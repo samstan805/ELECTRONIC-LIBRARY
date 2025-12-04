@@ -210,4 +210,5 @@ def download_book(book_id):
     return redirect(url_for('uploaded_file', filename=book["filename"]))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT" , 5000))
+  app.run(host="0.0.0.0", port=port)
