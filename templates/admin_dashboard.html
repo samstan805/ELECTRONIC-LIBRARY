@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<h2>Welcome {{ session.get('name') or session.get('email') }} (Admin)</h2>
+<p class="muted">Admin dashboard — upload and manage books.</p>
+
+<section class="upload-card">
+  <form method="post" enctype="multipart/form-data">
+    <input name="title" placeholder="Book title" required />
+    <input name="author" placeholder="Author" required />
+    <input type="file" name="file" accept=".pdf,.epub,.txt,.docx" required />
+    <button class="btn primary" type="submit">Upload Book</button>
+  </form>
+</section>
+
+<section class="book-list">
+  {% for book in books %}
+    <div class="book-card">
+      <h3>{{ book['title'] }}</h3>
+      <p class="muted">Author: {{ book['author'] }}</p>
+      <a class="btn" href="{{ url_for('download_book', book_id=book['id']) }}">Download</a>
+    </div>
+  {% else %}
+    <p>No books uploaded.</p>
+  {% endfor %}
+</section>
+{% endblock %}

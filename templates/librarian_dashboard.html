@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Librarian Dashboard{% endblock %}
+{% block content %}
+<h2>Welcome {{ session.get('name') or session.get('email') }} (Librarian)</h2>
+<p class="muted">Librarian dashboard — view books. Admins can upload.</p>
+<section class="book-list">
+  {% for book in books %}
+    <div class="book-card">
+      <h3>{{ book['title'] }}</h3>
+      <p class="muted">Author: {{ book['author'] }}</p>
+      <a class="btn" href="{{ url_for('download_book', book_id=book['id']) }}">Download</a>
+    </div>
+  {% else %}
+    <p>No books available.</p>
+  {% endfor %}
+</section>
+{% endblock %}
