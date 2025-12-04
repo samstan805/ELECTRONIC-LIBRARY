@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Register - eLibrary{% endblock %}
+{% block content %}
+<div class="auth-card">
+  <h1>Register</h1>
+  <form method="post" class="auth-form">
+    <input name="name" type="text" placeholder="Full name (optional)" />
+    <input name="email" type="email" placeholder="Email" required />
+    <input name="password" type="password" placeholder="Password" required />
+    <div class="radio-row">
+      <label><input type="radio" name="role" value="Student" checked> Student</label>
+      <label><input type="radio" name="role" value="Librarian"> Librarian</label>
+      <label><input type="radio" name="role" value="Admin"> Admin</label>
+    </div>
+    <button class="btn primary" type="submit">Register</button>
+  </form>
+  <div class="alt">
+    <p>Already registered? <a href="{{ url_for('login') }}">Login</a></p>
+  </div>
+</div>
+{% endblock %}

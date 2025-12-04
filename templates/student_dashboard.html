@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Student Dashboard{% endblock %}
+{% block content %}
+<h2>Welcome {{ session.get('name') or session.get('email') }}</h2>
+<p class="muted">Student dashboard — you can view and download books.</p>
+
+<section class="book-list">
+  {% if books %}
+    {% for book in books %}
+      <div class="book-card">
+        <h3>{{ book['title'] }}</h3>
+        <p class="muted">Author: {{ book['author'] }}</p>
+        <a class="btn" href="{{ url_for('download_book', book_id=book['id']) }}">Download</a>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No books available.</p>
+  {% endif %}
+</section>
+{% endblock %}
